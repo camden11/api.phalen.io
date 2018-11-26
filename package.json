@@ -4,7 +4,9 @@
   "description": "all necessary endpoints for personal website",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "precommit": "lint-staged",
+    "lint": "eslint *.js",
+    "dev": "nodemon server.js"
   },
   "author": "Camden Phalen",
   "license": "ISC",
@@ -23,5 +25,11 @@
   "devDependencies": {
     "@nuscout/eslint-config": "^0.2.1",
     "nodemon": "^1.14.11"
+  },
+  "lint-staged": {
+    "*.{js,json,css,scss,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
