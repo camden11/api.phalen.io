@@ -1,0 +1,11 @@
+{
+  "name": "api.phalen.io",
+  "version": "1.0.0",
+  "description": "all necessary endpoints for personal website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Camden Phalen",
+  "license": "ISC"
+}
