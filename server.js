@@ -6,12 +6,16 @@ const bodyParser = require('body-parser');
 
 const routes = require('./app/routes');
 
+const Spotify = require('./app/api/Spotify');
+
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const port = process.env.PORT || 8000;
+
+new Spotify().getAccessToken();
 
 MongoClient.connect(
   process.env.DB_URL,
