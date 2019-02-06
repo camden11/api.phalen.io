@@ -1,4 +1,3 @@
-require('dotenv').config();
 const fetch = require('node-fetch');
 const { URLSearchParams } = require('url');
 
@@ -29,7 +28,7 @@ class Spotify {
     const headers = {
       Authorization: `Bearer ${this.accessToken}`,
     };
-    let uri = `https://api.spotify.com/v1/me/tracks`;
+    let uri = `https://api.spotify.com/v1/me/tracks?limit=50`;
     let tracks = [];
     while (uri) {
       const response = await fetch(uri, {

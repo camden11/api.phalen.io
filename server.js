@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 let cors = require('cors');
-const MongoClient = require('mongodb').MongoClient;
+const connectDatabase = require('./app/db');
 const bodyParser = require('body-parser');
 
 const routes = require('./app/routes');
@@ -15,18 +15,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const port = process.env.PORT || 8000;
 
-new Spotify().getAccessToken();
-
-MongoClient.connect(
-  process.env.DB_URL,
-  (err, database) => {
-    if (err) {
-      return console.log(err);
-    }
-    const db = database.db(process.env.DB_NAME);
-    routes(app, db);
-    app.listen(port, () => {
-      console.log('Up and running on localhost:' + port);
-    });
-  }
-);
+connectDatabase(db => {
+  routes(app, db);
+  app.listen(port, () => {
+    console.log('Up and running on localhost:' + port);
+  });
+});
