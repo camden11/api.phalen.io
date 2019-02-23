@@ -43,6 +43,19 @@ class Spotify {
     }
     return tracks;
   }
+
+  async getArtistGenres(artistId) {
+    if (!this.accessToken) {
+      throw 'Must get access token first';
+    }
+    const headers = {
+      Authorization: `Bearer ${this.accessToken}`,
+    };
+    const uri = `https://api.spotify.com/v1/artists/${artistId}`;
+    const response = await fetch(uri, { method: 'get', headers });
+    const data = await response.json();
+    return data.genres;
+  }
 }
 
 module.exports = new Spotify();
