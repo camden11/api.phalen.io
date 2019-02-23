@@ -10,7 +10,7 @@ const connectDatabase = (callback, script = false) => {
       const db = database.db(process.env.DB_NAME);
       if (script) {
         await callback(db);
-        db.close();
+        return db.close();
       }
       callback(db);
     }
