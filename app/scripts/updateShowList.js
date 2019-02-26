@@ -30,7 +30,7 @@ initializeDatabase(async db => {
 
   console.log('retreiving artist data and shows');
   const shows = [];
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < spotifyArtists.length; i++) {
     const artist = spotifyArtists[i];
     console.log('\x1b[0m', `fetching data for ${artist.name}`);
     const spotifyGenres = await Spotify.getArtistGenres(artist.id);
@@ -49,17 +49,4 @@ initializeDatabase(async db => {
 
   console.log('adding shows to database');
   shows.forEach(show => show.save(db));
-  // db.collection('artists').findAndModify(
-  //   { _id: new ObjectID(process.env.DB_ARTIST_LIST) },
-  //   { _id: 1 },
-  //   { $set: { list: artistIds } },
-  //   { new: true },
-  //   err => {
-  //     if (err) {
-  //       console.log('db error');
-  //     } else {
-  //       console.log('artist db updated');
-  //     }
-  //   }
-  // );
 }, true);
